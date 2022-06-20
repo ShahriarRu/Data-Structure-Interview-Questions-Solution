@@ -35,6 +35,12 @@ class MyLinkedList {
   }
 
   insert(index, value) {
+    if (index > this.length) {
+      return this.append(value);
+    } else if (index == 0) {
+      return this.prepend(value);
+    }
+
     let newNode = new Node(value);
     let pointer = this.head;
 
@@ -43,14 +49,37 @@ class MyLinkedList {
     }
     newNode.next = pointer.next;
     pointer.next = newNode;
+
+    this.length++;
+  }
+
+  remove(index) {
+    if (index > this.length) {
+      return;
+    } else if (index == 0) {
+      this.head = this.head.next;
+    }
+
+    let pointer = this.head;
+
+    for (let i = 1; i < index; i++) {
+      pointer = pointer.next;
+    }
+    //prev = pointer
+    //next = pointer.next
+    pointer.next = pointer.next.next;
+    this.length--;
   }
 
   print() {
     let pointer = this.head;
+    let arr = [];
     while (pointer != null) {
-      console.log(pointer.value);
+      arr.push(pointer.value);
       pointer = pointer.next;
     }
+
+    return arr;
   }
 
   search(value) {
@@ -85,7 +114,8 @@ linkedList.append(16);
 linkedList.append(25);
 linkedList.prepend(12);
 linkedList.prepend(18);
-
-linkedList.insert(3, 16);
-console.log(linkedList.search(16));
-linkedList.print();
+linkedList.prepend(22);
+linkedList.insert(0, 16);
+linkedList.remove(0);
+//console.log(linkedList.search(16))
+console.log(linkedList);
