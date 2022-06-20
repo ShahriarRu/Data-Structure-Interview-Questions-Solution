@@ -1,3 +1,10 @@
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
 class MyLinkedList {
   constructor(value) {
     this.head = {
@@ -8,11 +15,9 @@ class MyLinkedList {
     this.tail = this.head;
     this.length = 1;
   }
+
   append(value) {
-    const newNode = {
-      value: value,
-      next: null,
-    };
+    let newNode = new Node(value);
 
     this.tail.next = newNode;
     this.tail = newNode;
@@ -21,23 +26,66 @@ class MyLinkedList {
   }
 
   prepend(value) {
-    const newNode = {
-      value: value,
-      next: null,
-    };
+    let newNode = new Node(value);
 
     newNode.next = this.head;
     this.head = newNode;
     this.length++;
     return this;
   }
+
+  insert(index, value) {
+    let newNode = new Node(value);
+    let pointer = this.head;
+
+    for (let i = 1; i < index; i++) {
+      pointer = pointer.next;
+    }
+    newNode.next = pointer.next;
+    pointer.next = newNode;
+  }
+
+  print() {
+    let pointer = this.head;
+    while (pointer != null) {
+      console.log(pointer.value);
+      pointer = pointer.next;
+    }
+  }
+
+  search(value) {
+    let pointer = this.head;
+    let index = 0;
+    let arr = [];
+
+    while (pointer != null) {
+      //console.log(pointer.value, value)
+      if (pointer.value == value) {
+        arr.push(index);
+      }
+      index++;
+      pointer = pointer.next;
+    }
+
+    if (arr.length == 0) {
+      console.log("Sorry, value not found 😪");
+    } else {
+      return arr;
+    }
+  }
 }
 
 let linkedList = new MyLinkedList(10);
+
 linkedList.append(6);
 linkedList.append(15);
 linkedList.append(20);
 linkedList.append(9);
+linkedList.append(16);
+linkedList.append(25);
 linkedList.prepend(12);
 linkedList.prepend(18);
-console.log(linkedList);
+
+linkedList.insert(3, 16);
+console.log(linkedList.search(16));
+linkedList.print();
