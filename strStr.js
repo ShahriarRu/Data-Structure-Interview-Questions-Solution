@@ -11,12 +11,12 @@ var strStr = function (haystack, needle) {
   }
 
   for (i = 0; i <= hay_len - need_len; i++) {
-    str = haystack.slice(i, i + need_len);
-    if (str == needle) {
-      return i;
+    if (haystack[i] == needle[0]) {
+      str = haystack.slice(i, i + need_len);
+      if (str == needle) {
+        return i;
+      }
     }
   }
   return -1;
 };
-
-console.log(strStr((haystack = "aaaaa"), (needle = "bba")));
