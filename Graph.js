@@ -4,9 +4,15 @@ class Graph {
     this.adjecentList = {};
   }
 
-  addVertex(node) {}
+  addVertex(node) {
+    this.adjecentList[node] = [];
+    this.numberOfNodes++;
+  }
 
-  addEdge(node1, node2) {}
+  addEdge(node1, node2) {
+    this.adjecentList[node1].push(node2);
+    this.adjecentList[node2].push(node1);
+  }
 
   showConnectons() {}
 }
