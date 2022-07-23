@@ -34,3 +34,15 @@ class BST {
     }
   }
 }
+
+var countSmaller = function (nums) {
+  len = nums.length;
+  final = [];
+  for (let i = 0; i < len; i++) {
+    let newarr = nums.slice(i + 1, len + 1);
+    count = newarr.filter((item) => item < nums[i]);
+
+    final.push(count.length);
+  }
+  return final;
+};
