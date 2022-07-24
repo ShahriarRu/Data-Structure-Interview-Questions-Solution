@@ -56,6 +56,7 @@ class BinarySearchTree {
     }
     return "Item not found";
   }
+  BFS() {}
 }
 
 const tree = new BinarySearchTree();
