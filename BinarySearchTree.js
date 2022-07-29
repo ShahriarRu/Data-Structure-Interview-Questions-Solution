@@ -56,7 +56,10 @@ class BinarySearchTree {
     }
     return "Item not found";
   }
-  BFS() {}
+  BFS() {
+    let currentNode = this.root;
+    let list = [];
+  }
 }
 
 const tree = new BinarySearchTree();
