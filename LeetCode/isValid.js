@@ -20,4 +20,4 @@ var isValid = function (s) {
   console.log(stack);
 };
 
-console.log(isValid((s = "()[]{}")));
+console.log(isValid((s = "({})[]{}")));
