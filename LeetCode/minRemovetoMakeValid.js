@@ -61,3 +61,26 @@ var minRemoveToMakeValid = function (s) {
 
   return string;
 };
+
+//more optimized
+
+var minRemoveToMakeValid = function (s) {
+  bracks = 0;
+  index = [];
+  for (var i = 0; i < s.length; i++) {
+    if (bracks == 0 && s[i] == ")") {
+      index.push(i);
+    } else if (s[i] == "(") {
+      bracks++;
+      index.push(i);
+    } else if (s[i] == ")") {
+      bracks--;
+      index.pop();
+    }
+  }
+  for (var i = index.length - 1; i >= 0; i--) {
+    s = s.substring(0, index[i]) + "" + s.substring(index[i] + 1);
+  }
+
+  return s;
+};
