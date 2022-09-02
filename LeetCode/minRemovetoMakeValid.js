@@ -29,3 +29,35 @@ var minRemoveToMakeValid = function (s) {
 
   return s;
 };
+
+//optimized
+/**
+ * @param {string} s
+ * @return {string}
+ */
+
+var minRemoveToMakeValid = function (s) {
+  stack = [];
+  index = [];
+  for (var i = 0; i < s.length; i++) {
+    if (s[i] == "(") {
+      stack.push("(");
+      index.push(i);
+    } else if (s[i] == ")" && stack.length == 0) {
+      index.push(i);
+    } else if (s[i] == ")") {
+      stack.pop();
+      index.pop();
+    }
+  }
+  string = "";
+  for (var i = 0, ind = 0; i < s.length; i++) {
+    if (index[ind] != i) {
+      string += s[i];
+      continue;
+    }
+    ind++;
+  }
+
+  return string;
+};
