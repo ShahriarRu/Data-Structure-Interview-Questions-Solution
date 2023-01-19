@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include<queue>
 using namespace std;
 
 vector<vector<int>> graph;
@@ -27,6 +28,25 @@ void DFS(int start) {
     DFSUtil(start, visited);
 }
 
+void BFS(int start){
+    cout << "Following is Bredth First Traversal (starting from vertex "<< start << ") \n";
+    vector<bool> visited(graph.size(), false);
+    queue<int> q;
+    q.push(start);
+    visited[start] = true;
+
+    while(!q.empty()){
+        int u = q.front();
+        q.pop();
+        cout << u << " ";
+        for(auto child : graph[u]){
+            if(!visited[child]){
+                q.push(child);
+                visited[child] = true;
+            }
+       } 
+    }
+}
 
 
 int main() {
@@ -40,7 +60,9 @@ int main() {
     addEdge(3, 3);
 
 
+
     DFS(1);
+    BFS(2);
 
     return 0;
 }
